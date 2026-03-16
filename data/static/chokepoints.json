@@ -1,0 +1,104 @@
+{
+  "chokepoints": [
+    {
+      "id": "chk_hormuz",
+      "name": "Strait of Hormuz",
+      "lat": 26.5667,
+      "lon": 56.2500,
+      "controlling_countries": ["IRN", "OMN"],
+      "flow_bpd": 21000000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_malacca",
+      "name": "Strait of Malacca",
+      "lat": 2.5000,
+      "lon": 101.5000,
+      "controlling_countries": ["MYS", "SGP", "IDN"],
+      "flow_bpd": 16200000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_suez",
+      "name": "Suez Canal",
+      "lat": 30.4549,
+      "lon": 32.5498,
+      "controlling_countries": ["EGY"],
+      "flow_bpd": 5500000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_bab",
+      "name": "Bab el-Mandeb",
+      "lat": 12.5833,
+      "lon": 43.3333,
+      "controlling_countries": ["YEM", "DJI", "ERI"],
+      "flow_bpd": 6200000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_bosphorus",
+      "name": "Turkish Straits (Bosphorus)",
+      "lat": 41.1167,
+      "lon": 29.0667,
+      "controlling_countries": ["TUR"],
+      "flow_bpd": 3000000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_danish",
+      "name": "Danish Straits",
+      "lat": 57.5000,
+      "lon": 10.5000,
+      "controlling_countries": ["DNK", "SWE"],
+      "flow_bpd": 3000000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_gibraltar",
+      "name": "Strait of Gibraltar",
+      "lat": 35.9583,
+      "lon": -5.4792,
+      "controlling_countries": ["ESP", "GBR"],
+      "flow_bpd": 1500000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_panama",
+      "name": "Panama Canal",
+      "lat": 9.0800,
+      "lon": -79.6800,
+      "controlling_countries": ["PAN"],
+      "flow_bpd": 900000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_cape",
+      "name": "Cape of Good Hope",
+      "lat": -34.3568,
+      "lon": 18.4734,
+      "controlling_countries": ["ZAF"],
+      "flow_bpd": 6000000,
+      "closure_risk": null,
+      "risk_score": null
+    },
+    {
+      "id": "chk_lombok",
+      "name": "Lombok Strait",
+      "lat": -8.7500,
+      "lon": 115.7500,
+      "controlling_countries": ["IDN"],
+      "flow_bpd": 1000000,
+      "closure_risk": null,
+      "risk_score": null
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "terminals": [
+    {
+      "id": "term_ras_tanura",
+      "name": "Ras Tanura",
+      "type": "export",
+      "country_iso": "SAU",
+      "capacity_bpd": 6500000,
+      "lat": 26.6442,
+      "lon": 50.1605,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_juaymah",
+      "name": "Juaymah Terminal",
+      "type": "export",
+      "country_iso": "SAU",
+      "capacity_bpd": 3000000,
+      "lat": 26.9167,
+      "lon": 49.8833,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_yanbu",
+      "name": "Yanbu Export Terminal",
+      "type": "export",
+      "country_iso": "SAU",
+      "capacity_bpd": 3000000,
+      "lat": 24.0895,
+      "lon": 38.0618,
+      "routes_through": ["chk_suez", "chk_bab"]
+    },
+    {
+      "id": "term_fujairah",
+      "name": "Fujairah Oil Terminal",
+      "type": "export",
+      "country_iso": "ARE",
+      "capacity_bpd": 1500000,
+      "lat": 25.1164,
+      "lon": 56.3264,
+      "routes_through": ["chk_malacca", "chk_suez"]
+    },
+    {
+      "id": "term_mina_al_ahmadi",
+      "name": "Mina Al Ahmadi",
+      "type": "export",
+      "country_iso": "KWT",
+      "capacity_bpd": 1700000,
+      "lat": 29.0667,
+      "lon": 48.1333,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_basrah",
+      "name": "Basrah Oil Terminal",
+      "type": "export",
+      "country_iso": "IRQ",
+      "capacity_bpd": 1800000,
+      "lat": 29.6833,
+      "lon": 48.8333,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_kharg",
+      "name": "Kharg Island Terminal",
+      "type": "export",
+      "country_iso": "IRN",
+      "capacity_bpd": 5000000,
+      "lat": 29.2333,
+      "lon": 50.3167,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_primorsk",
+      "name": "Primorsk Terminal",
+      "type": "export",
+      "country_iso": "RUS",
+      "capacity_bpd": 1600000,
+      "lat": 60.3667,
+      "lon": 28.6167,
+      "routes_through": ["chk_danish"]
+    },
+    {
+      "id": "term_novorossiysk",
+      "name": "Novorossiysk Terminal",
+      "type": "export",
+      "country_iso": "RUS",
+      "capacity_bpd": 1500000,
+      "lat": 44.7233,
+      "lon": 37.7688,
+      "routes_through": ["chk_bosphorus"]
+    },
+    {
+      "id": "term_kozmino",
+      "name": "Kozmino Terminal",
+      "type": "export",
+      "country_iso": "RUS",
+      "capacity_bpd": 1000000,
+      "lat": 42.6667,
+      "lon": 133.0833,
+      "routes_through": []
+    },
+    {
+      "id": "term_ceyhan",
+      "name": "Ceyhan Export Terminal",
+      "type": "export",
+      "country_iso": "TUR",
+      "capacity_bpd": 1200000,
+      "lat": 36.8500,
+      "lon": 35.7833,
+      "routes_through": ["chk_suez", "chk_gibraltar"]
+    },
+    {
+      "id": "term_es_sider",
+      "name": "Es Sider Terminal",
+      "type": "export",
+      "country_iso": "LBY",
+      "capacity_bpd": 340000,
+      "lat": 30.6333,
+      "lon": 18.6667,
+      "routes_through": ["chk_suez", "chk_gibraltar"]
+    },
+    {
+      "id": "term_bonny",
+      "name": "Bonny Terminal",
+      "type": "export",
+      "country_iso": "NGA",
+      "capacity_bpd": 1000000,
+      "lat": 4.4500,
+      "lon": 7.1500,
+      "routes_through": ["chk_gibraltar"]
+    },
+    {
+      "id": "term_forcados",
+      "name": "Forcados Terminal",
+      "type": "export",
+      "country_iso": "NGA",
+      "capacity_bpd": 400000,
+      "lat": 5.3500,
+      "lon": 5.3667,
+      "routes_through": ["chk_gibraltar"]
+    },
+    {
+      "id": "term_malongo",
+      "name": "Malongo Terminal",
+      "type": "export",
+      "country_iso": "AGO",
+      "capacity_bpd": 800000,
+      "lat": -5.5000,
+      "lon": 12.2333,
+      "routes_through": ["chk_cape", "chk_gibraltar"]
+    },
+    {
+      "id": "term_bejaia",
+      "name": "Bejaia Terminal",
+      "type": "export",
+      "country_iso": "DZA",
+      "capacity_bpd": 500000,
+      "lat": 36.7500,
+      "lon": 5.1000,
+      "routes_through": ["chk_gibraltar"]
+    },
+    {
+      "id": "term_houston",
+      "name": "Houston Export Terminal",
+      "type": "export",
+      "country_iso": "USA",
+      "capacity_bpd": 2000000,
+      "lat": 29.7355,
+      "lon": -95.0890,
+      "routes_through": ["chk_panama"]
+    },
+    {
+      "id": "term_corpus_christi",
+      "name": "Corpus Christi Terminal",
+      "type": "export",
+      "country_iso": "USA",
+      "capacity_bpd": 1800000,
+      "lat": 27.8006,
+      "lon": -97.3964,
+      "routes_through": ["chk_panama"]
+    },
+    {
+      "id": "term_vadinar",
+      "name": "Vadinar Terminal",
+      "type": "import",
+      "country_iso": "IND",
+      "capacity_bpd": 1200000,
+      "lat": 22.4833,
+      "lon": 69.8000,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_mundra",
+      "name": "Mundra Terminal",
+      "type": "import",
+      "country_iso": "IND",
+      "capacity_bpd": 400000,
+      "lat": 22.8394,
+      "lon": 69.7119,
+      "routes_through": ["chk_hormuz"]
+    },
+    {
+      "id": "term_qingdao",
+      "name": "Qingdao Port",
+      "type": "import",
+      "country_iso": "CHN",
+      "capacity_bpd": 3000000,
+      "lat": 36.0671,
+      "lon": 120.3826,
+      "routes_through": ["chk_malacca", "chk_hormuz"]
+    },
+    {
+      "id": "term_ningbo",
+      "name": "Ningbo-Zhoushan Port",
+      "type": "import",
+      "country_iso": "CHN",
+      "capacity_bpd": 2500000,
+      "lat": 29.8683,
+      "lon": 121.5440,
+      "routes_through": ["chk_malacca", "chk_hormuz"]
+    },
+    {
+      "id": "term_kashima",
+      "name": "Kashima Port",
+      "type": "import",
+      "country_iso": "JPN",
+      "capacity_bpd": 900000,
+      "lat": 35.8833,
+      "lon": 140.7833,
+      "routes_through": ["chk_malacca", "chk_hormuz"]
+    },
+    {
+      "id": "term_chiba",
+      "name": "Chiba Terminal",
+      "type": "import",
+      "country_iso": "JPN",
+      "capacity_bpd": 1000000,
+      "lat": 35.5500,
+      "lon": 140.0833,
+      "routes_through": ["chk_malacca", "chk_hormuz"]
+    },
+    {
+      "id": "term_ulsan",
+      "name": "Ulsan Port",
+      "type": "import",
+      "country_iso": "KOR",
+      "capacity_bpd": 1500000,
+      "lat": 35.5044,
+      "lon": 129.3869,
+      "routes_through": ["chk_malacca", "chk_hormuz"]
+    },
+    {
+      "id": "term_rotterdam",
+      "name": "Rotterdam Oil Terminal",
+      "type": "import",
+      "country_iso": "NLD",
+      "capacity_bpd": 2500000,
+      "lat": 51.9244,
+      "lon": 4.4777,
+      "routes_through": ["chk_danish", "chk_gibraltar"]
+    },
+    {
+      "id": "term_antwerp",
+      "name": "Antwerp Terminal",
+      "type": "import",
+      "country_iso": "BEL",
+      "capacity_bpd": 1200000,
+      "lat": 51.2213,
+      "lon": 4.4051,
+      "routes_through": ["chk_danish", "chk_gibraltar"]
+    },
+    {
+      "id": "term_marseille",
+      "name": "Marseille-Fos Terminal",
+      "type": "import",
+      "country_iso": "FRA",
+      "capacity_bpd": 800000,
+      "lat": 43.3528,
+      "lon": 4.8697,
+      "routes_through": ["chk_gibraltar", "chk_suez"]
+    },
+    {
+      "id": "term_trieste",
+      "name": "Trieste Oil Terminal",
+      "type": "import",
+      "country_iso": "ITA",
+      "capacity_bpd": 700000,
+      "lat": 45.6495,
+      "lon": 13.7768,
+      "routes_through": ["chk_suez", "chk_gibraltar"]
+    },
+    {
+      "id": "term_augusta",
+      "name": "Augusta Terminal",
+      "type": "import",
+      "country_iso": "ITA",
+      "capacity_bpd": 500000,
+      "lat": 37.2167,
+      "lon": 15.2167,
+      "routes_through": ["chk_suez", "chk_gibraltar"]
+    },
+    {
+      "id": "term_wilhelmshaven",
+      "name": "Wilhelmshaven Terminal",
+      "type": "import",
+      "country_iso": "DEU",
+      "capacity_bpd": 700000,
+      "lat": 53.5753,
+      "lon": 8.1381,
+      "routes_through": ["chk_danish"]
+    },
+    {
+      "id": "term_algeciras",
+      "name": "Algeciras Terminal",
+      "type": "import",
+      "country_iso": "ESP",
+      "capacity_bpd": 600000,
+      "lat": 36.1408,
+      "lon": -5.4526,
+      "routes_through": ["chk_gibraltar"]
+    },
+    {
+      "id": "term_aliaga",
+      "name": "Aliaga Terminal",
+      "type": "import",
+      "country_iso": "TUR",
+      "capacity_bpd": 500000,
+      "lat": 38.8000,
+      "lon": 26.9667,
+      "routes_through": ["chk_bosphorus", "chk_suez"]
+    },
+    {
+      "id": "term_singapore",
+      "name": "Singapore Jurong Terminal",
+      "type": "import",
+      "country_iso": "SGP",
+      "capacity_bpd": 1400000,
+      "lat": 1.2655,
+      "lon": 103.7072,
+      "routes_through": ["chk_malacca"]
+    },
+    {
+      "id": "term_port_dickson",
+      "name": "Port Dickson Terminal",
+      "type": "import",
+      "country_iso": "MYS",
+      "capacity_bpd": 400000,
+      "lat": 2.5167,
+      "lon": 101.8000,
+      "routes_through": ["chk_malacca"]
+    }
+  ]
+}
