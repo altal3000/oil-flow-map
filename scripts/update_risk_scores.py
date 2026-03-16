@@ -205,6 +205,7 @@ def main():
         })
 
     df = pd.DataFrame(results)
+    os.makedirs("data/processed", exist_ok=True)
     df.to_csv("data/processed/risk_scores.csv", index=False)
 
     print("\nStrategic Exposure Index:")

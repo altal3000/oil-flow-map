@@ -116,6 +116,7 @@ def main():
     print(forecast.head().to_string(index=False))
 
     print("\nSaving forecast to CSV...")
+    os.makedirs("data/processed", exist_ok=True)
     forecast.to_csv(OUT_PATH, index=False)
     print(f"  Saved to {OUT_PATH}")
 
