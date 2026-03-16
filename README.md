@@ -7,7 +7,7 @@ Interactive dashboard tracking global crude oil supply chains, maritime chokepoi
 
 ![Oil Flow Map](docs/screenshot.png)
 
-**[Live app →](https://your-app.streamlit.app)**
+**[Live app →](https://oil-flow-map.streamlit.app/)**
 
 ---
 
@@ -23,7 +23,7 @@ Visualises the global crude oil supply network and models the strategic vulnerab
 
 | Layer | Components |
 |---|---|
-| Sources | Yahoo Finance · EI/BP Statistical Review · World Bank WGI · NewsData.io |
+| Sources | Yahoo Finance · Energy Institute/BP Statistical Review of World Energy · World Bank WGI · NewsData.io |
 | ETL | Python scripts — static loaders (annual) + daily updaters |
 | Storage | Neo4j Aura (graph DB) |
 | App | Streamlit — Pydeck map · Plotly chart · trade tables |
@@ -42,7 +42,7 @@ Neo4j · Python · pandas · Facebook Prophet · VADER · Pydeck · Plotly · St
 
 | Dataset | Source | Frequency |
 |---|---|---|
-| Bilateral crude trade flows | EI / BP Statistical Review 2022–2025 | Annual |
+| Bilateral crude trade flows | Energy Institute / BP Statistical Review of World Energy 2022–2025 | Annual |
 | Political stability scores | World Bank WGI | Annual |
 | Brent crude futures | Yahoo Finance (BZ=F) | Daily |
 | News headlines | NewsData.io | Daily |
