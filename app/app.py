@@ -17,6 +17,10 @@ import plotly.graph_objects as go
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
+import subprocess
+if not os.path.exists("data/raw/eia_prices_raw.csv"):
+    subprocess.run(["python", "scripts/extract_prices.py"])
+
 load_dotenv()
 
 # ── Page config ───────────────────────────────────────────────────────────────
