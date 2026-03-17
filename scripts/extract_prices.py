@@ -1,27 +1,33 @@
 """
 extract_prices.py
-Fetches 5 years of Brent crude front-month futures (BZ=F) from Yahoo Finance
-and saves to data/raw/eia_prices_raw.csv in the same format as the original
-EIA extract — ensuring backward compatibility with train_prophet.py.
+Fetches 5 years of Brent crude front-month futures (BZ=F) from Yahoo Finance.
 
-Replaces extract_eia.py. No API key required.
+Outputs:
+    data/raw/eia_prices_raw.csv  — for train_prophet.py (backward compatibility)
+    Neo4j Price nodes            — for app.py price chart
 
 Run from project root:
     python scripts/extract_prices.py
 """
 
+import os
 import pandas as pd
 import yfinance as yf
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
+from dotenv import load_dotenv
+from neo4j import GraphDatabase
+
+load_dotenv()
+
+URI      = os.getenv("NEO4J_URI")
+USER     = os.getenv("NEO4J_USERNAME")
+PASSWORD = os.getenv("NEO4J_PASSWORD")
 
 RAW_DATA_PATH = Path("data/raw")
 RAW_DATA_PATH.mkdir(exist_ok=True)
 OUTPUT_PATH = RAW_DATA_PATH / "eia_prices_raw.csv"
-
-
-# Named eia_prices_raw.csv for backward compatibility with train_prophet.py and app.py
-
+# Named eia_prices_raw.csv for backward compatibility with train_prophet.py
 
 
 def fetch_prices():
@@ -45,20 +51,18 @@ def fetch_prices():
     hist = hist.reset_index()
     hist["Date"] = pd.to_datetime(hist["Date"]).dt.tz_localize(None)
 
-    # Build dataframe in same column format as original EIA CSV
-    # so train_prophet.py requires no changes
     df = pd.DataFrame({
-        "period":           hist["Date"].dt.strftime("%Y-%m-%d"),
-        "duoarea":          "ZEU",
-        "area-name":        "NA",
-        "product":          "EPCBRENT",
-        "product-name":     "UK Brent Crude Oil",
-        "process":          "PF4",
-        "process-name":     "Front-Month Futures",
-        "series":           "RBRTE",
+        "period":             hist["Date"].dt.strftime("%Y-%m-%d"),
+        "duoarea":            "ZEU",
+        "area-name":          "NA",
+        "product":            "EPCBRENT",
+        "product-name":       "UK Brent Crude Oil",
+        "process":            "PF4",
+        "process-name":       "Front-Month Futures",
+        "series":             "RBRTE",
         "series-description": "Brent Crude Front-Month Futures (Dollars per Barrel)",
-        "value":            hist["Close"].round(2),
-        "units":            "$/BBL",
+        "value":              hist["Close"].round(2),
+        "units":              "$/BBL",
     })
 
     df = df.sort_values("period", ascending=False).reset_index(drop=True)
@@ -71,6 +75,46 @@ def fetch_prices():
     return df
 
 
+def write_to_neo4j(df):
+    """Write price series to Neo4j as Price nodes."""
+    driver = GraphDatabase.driver(URI, auth=(USER, PASSWORD))
+
+    with driver.session() as session:
+        # Clear existing price nodes
+        session.run("MATCH (p:Price) DETACH DELETE p")
+
+        # Create uniqueness constraint if not exists
+        session.run("""
+            CREATE CONSTRAINT price_date IF NOT EXISTS
+            FOR (p:Price) REQUIRE p.date IS UNIQUE
+        """)
+
+        # Write all price records
+        brent_df = df[df["series"] == "RBRTE"].copy()
+        for _, row in brent_df.iterrows():
+            session.run("""
+                MERGE (p:Price {date: $date})
+                SET p.price      = $price,
+                    p.series     = 'BRENT',
+                    p.updated_at = $updated_at
+            """,
+            date=row["period"],
+            price=float(row["value"]),
+            updated_at=datetime.now(UTC).isoformat())
+
+    driver.close()
+    print(f"  {len(brent_df)} Price nodes written to Neo4j")
+
+
+def main():
+    df = fetch_prices()
+    if df is None:
+        return
+
+    print("Writing prices to Neo4j...")
+    write_to_neo4j(df)
+    print("Done.")
+
+
 if __name__ == "__main__":
-    fetch_prices()
-    print("Price extraction complete.")
+    main()

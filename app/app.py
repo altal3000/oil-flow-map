@@ -150,30 +150,17 @@ def load_price_forecast():
 
 @st.cache_data(ttl=3600)
 def load_prices():
-    if not os.path.exists("data/raw/eia_prices_raw.csv"):
-        os.makedirs("data/raw", exist_ok=True)
-        import yfinance as yf
-        from datetime import datetime, timedelta
-        end_date = datetime.today()
-        start_date = end_date - timedelta(days=365 * 5)
-        ticker = yf.Ticker("BZ=F")
-        hist = ticker.history(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"), interval="1d")
-        hist = hist.reset_index()
-        hist["Date"] = pd.to_datetime(hist["Date"]).dt.tz_localize(None)
-        df = pd.DataFrame({
-            "period": hist["Date"].dt.strftime("%Y-%m-%d"),
-            "duoarea": "ZEU", "area-name": "NA", "product": "EPCBRENT",
-            "product-name": "UK Brent Crude Oil", "process": "PF4",
-            "process-name": "Front-Month Futures", "series": "RBRTE",
-            "series-description": "Brent Crude Front-Month Futures (Dollars per Barrel)",
-            "value": hist["Close"].round(2), "units": "$/BBL",
-        })
-        df.to_csv("data/raw/eia_prices_raw.csv", index=False)
-    df = pd.read_csv("data/raw/eia_prices_raw.csv", parse_dates=["period"])
-    df = df[df["series"] == "RBRTE"].copy()
-    df = df.rename(columns={"period": "date", "value": "price"})
-    df = df[["date", "price"]].sort_values("date").reset_index(drop=True)
-    return df
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run("""
+            MATCH (p:Price)
+            RETURN p.date  AS date,
+                   p.price AS price
+            ORDER BY p.date
+        """)
+        df = pd.DataFrame([dict(r) for r in result])
+        df["date"] = pd.to_datetime(df["date"])
+        return df
 
 
 # ── Helper functions ──────────────────────────────────────────────────────────
