@@ -22,6 +22,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Fetch prices
+        env:
+          NEO4J_URI:      ${{ secrets.NEO4J_URI }}
+          NEO4J_USERNAME: ${{ secrets.NEO4J_USERNAME }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
         run: python scripts/extract_prices.py
 
       - name: Retrain Prophet forecast
