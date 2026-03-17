@@ -24,18 +24,24 @@ URI      = os.getenv("NEO4J_URI")
 USER     = os.getenv("NEO4J_USERNAME")
 PASSWORD = os.getenv("NEO4J_PASSWORD")
 
-EIA_CSV   = "data/raw/eia_prices_raw.csv"
 OUT_PATH  = "data/processed/price_forecast.csv"
 FORECAST_DAYS = 90
 
 
 def load_brent():
-    """Load and prepare Brent price series for Prophet."""
-    df = pd.read_csv(EIA_CSV, parse_dates=["period"])
-    df = df[df["series"] == "RBRTE"].copy()
-    df = df.rename(columns={"period": "ds", "value": "y"})
-    df = df[["ds", "y"]].sort_values("ds").reset_index(drop=True)
-    df = df.dropna(subset=["y"])
+    """Load Brent price series from Neo4j for Prophet."""
+    driver = GraphDatabase.driver(URI, auth=(USER, PASSWORD))
+    with driver.session() as session:
+        result = session.run("""
+            MATCH (p:Price)
+            RETURN p.date  AS ds,
+                   p.price AS y
+            ORDER BY p.date
+        """)
+        df = pd.DataFrame([dict(r) for r in result])
+    driver.close()
+    df["ds"] = pd.to_datetime(df["ds"])
+    df = df.dropna(subset=["y"]).reset_index(drop=True)
     print(f"  Brent data: {len(df)} trading days, "
           f"{df['ds'].min().date()} to {df['ds'].max().date()}")
     return df
