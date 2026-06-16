@@ -10,6 +10,7 @@ Run from project root:
 """
 
 import os
+import sys
 import pandas as pd
 import yfinance as yf
 from datetime import datetime, timedelta, UTC
@@ -88,7 +89,7 @@ def write_to_neo4j(df):
 def main():
     df = fetch_prices()
     if df is None:
-        return
+        sys.exit(1)
 
     print("Writing prices to Neo4j...")
     write_to_neo4j(df)

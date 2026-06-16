@@ -17,10 +17,6 @@ import plotly.graph_objects as go
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
-import subprocess
-if not os.path.exists("data/raw/eia_prices_raw.csv"):
-    subprocess.run(["python", "scripts/extract_prices.py"])
-
 load_dotenv()
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -97,6 +93,19 @@ def load_pipelines():
                    p.instability                 AS instability
         """)
         return pd.DataFrame([dict(r) for r in result])
+
+
+@st.cache_data(ttl=3600)
+def load_flow_years():
+    driver = get_driver()
+    with driver.session() as session:
+        result = session.run("""
+            MATCH ()-[f:FLOW]->()
+            RETURN DISTINCT f.year AS year
+            ORDER BY f.year
+        """)
+        years = [r["year"] for r in result if r["year"] is not None]
+    return years or [2024]
 
 
 @st.cache_data(ttl=3600)
@@ -302,6 +311,7 @@ with st.spinner("Loading data..."):
     regions     = load_regions()
     forecast    = load_price_forecast()
     prices      = load_prices()
+    flow_years  = load_flow_years()
 
 # ── Main layout columns ───────────────────────────────────────────────────────
 map_col, panel_col = st.columns([2, 1], gap="large")
@@ -316,8 +326,8 @@ with map_col:
     with ctrl1:
         selected_year = st.selectbox(
             "Flow year",
-            options=[2021, 2022, 2023, 2024],
-            index=3,
+            options=flow_years,
+            index=len(flow_years) - 1,
         )
     with ctrl2:
         region_options = ["— None —"] + sorted(regions["name"].dropna().tolist())

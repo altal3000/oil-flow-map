@@ -8,6 +8,8 @@ on:
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -42,3 +44,12 @@ jobs:
           NEO4J_PASSWORD:   ${{ secrets.NEO4J_PASSWORD }}
           NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
         run: python scripts/update_risk_scores.py
+
+      - name: Keepalive commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .last_pipeline_run
+          git add .last_pipeline_run
+          git commit -m "chore: pipeline keepalive $(date -u +%Y-%m-%d)" || true
+          git push
